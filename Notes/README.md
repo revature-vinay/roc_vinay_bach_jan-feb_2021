@@ -114,3 +114,34 @@ Maybe to remember primitives, go in this order: byte -> short -> char -> int -> 
         - This is where the methods and fields are defined
         - Objects are created from these class **blueprints**
 - Allow us to use OOP in Java
+
+# Casting
+In Java, at a high level, we essentially have two forms of casting:
+- Explicit casting
+- Implicit casting
+
+Casting can be performed on both primitive and reference data types. For primitives, this is known as primitive conversion, and for reference variables, it is known generally as casting. 
+
+In both cases, we "turn" one type into another, but the difference between primitive conversion and reference type casting is quite different. The difference mainly stems from the fact that primitive variables contain a value, which results in actual changes in its value.
+
+## Primitive Variable Casting
+Primitive casting is known as type conversion. This allows us to change the value from one data type to another. Implicit casting occurs if we go from a primitive type that is **smaller** in range to one that is **larger** in range. In technical terms, implicit casting occurs when the casting operation is "safe", while explicit casting is necessary if it is unsafe (in cases where you can lose data).
+
+- Widening Conversion
+    - Occurs implicitly
+    - byte -> short -> char -> int -> long -> float -> double
+    - Notice how long fits inside float, despite long being 64 bits and float being 32 bits.. because of how the ranges are represented
+- Narrowing Conversion
+    - Occurs explicitly
+    - Care should be taken
+    - double -> float -> long -> int -> char -> short -> byte
+
+## Reference Variable casting
+Reference variable casting occurs when we convert from one reference type to another. In the case of reference variable casting, implicit casting occurs if we go from a child class type up to a parent class type, which is "safe" operation. Explicit casting occurs if we go from parent class to child class, which is "unsafe".
+
+- Unlike primitive casting, reference casting doesn't touch the object itself
+    - Reference casting simply labels the object a different way
+    - It either expands or narrows methods/properties available to work with
+- Implicit casting, going from child to parent, is known as **upcasting** because we're going up the hierarchy of inheritance
+- Explicit casting, going from parent to child, is known as **downcasting** since we are going down the hierarchy to a more specific reference type
+    - This widens the methods and properties we can work with
