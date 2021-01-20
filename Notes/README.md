@@ -145,3 +145,96 @@ Reference variable casting occurs when we convert from one reference type to ano
 - Implicit casting, going from child to parent, is known as **upcasting** because we're going up the hierarchy of inheritance
 - Explicit casting, going from parent to child, is known as **downcasting** since we are going down the hierarchy to a more specific reference type
     - This widens the methods and properties we can work with
+
+# Java: Operators
+Operators in Java allow us to perform operations with our primitives. In Java, we have 5 different categories of operators.
+- Arithmetic Operators (adding, subtracting, dividing, multiplying, etc.)
+- Logical Operators (these are operators that evaluate to true/false aka boolean, &&, || (AND, OR, NOT...))
+- Assignment Operators (=, *=, /=, ...)
+- Relational Operators
+- Relational Operators (comparison operators)
+- Bitwise Operators
+
+## Arithmetic Operators
+Arithmetic operators perform common mathematical operations.
+| Operator | Name | Description | Example |
+| :------- | :--- | :---------- | :------ |
+| + | Addition | Adds together two values | x + y |
+| - | Subtraction | Subtract one value from another | x - y |
+| * | Multiplication | Multiplies two values | x * y |
+| / | Division | Divides a value by another | x / y |
+| % | Modulus | Evaluates to the division remainder | x % y |
+| ++ | Increment | Increases the value of a variable by 1 | ++x or x++ |
+| -- | Decrement | Decreases the value of a variable by 1 | --x or x-- |
+
+Operator Precedence (from highest to lowest)
+- Postfix (x++ or x--)
+- Prefix (++x or --x)
+- Multiplicative (*, /, % <- modulo operator)
+- Additive (+, -)
+- Generally follows PEMDAS
+
+Operators with equal precendence are evaluated from left to right
+```java
+int x = 1 + 2 - 5 + 3 // 1 + 2 - 5 + 3 = 3 - 5 + 3 = -2 + 3 = 1
+```
+
+We can override precedence using parentheses
+```java
+int x0 = 1 + 2 * 3 // 1 + 6 = 7
+int x1 = (1 + 2) * 3 // 3 * 3 = 9
+```
+
+Nested parentheses are evaluated from inside out
+```java
+int x = ((1 + 2) * 3) * 4
+// (3 * 3) * 4 = 9 * 4 = 36
+```
+
+## Logical Operators
+Logical operators are used to perform operations with booleans
+
+| Operator | Name | Description | Example |
+| :------- | :--- | :---------- | :------ |
+| && | Logical AND | Evaluates to true if both statements are true | x > 10 && x < 20 |
+| \|\| | Logical OR | Evaluates to true if at least one of the statements is true | x < 10 \|\| x > 20 | 
+| ! | Logical NOT | Evaluates to false if the result is true and vice versa | !(x < 5) |
+
+## Assignment Operators
+Assignment Operators allow us to assign values to a particular variable
+
+| Operator | Example | Equivalency |
+| :------- | :------ | :---------- |
+| = | x = 3 | x = 3 |
+| += | x += 3 | x = x + 3 |
+| -= | x -= 3 | x = x - 3 |
+| *= | x *= 3 | x = x * 3 |
+| /= | x /= 3 | x = x / 3 |
+| %= | x %= 3 | x = x % 3 |
+
+## Relational Operators
+THese are also known as comparison operators, which allow us to compare values against each other. These operators evaluate to boolean values.
+
+| Operator | Name | Example |
+| :------- | :--- | :------ |
+| == | Equal to | x == y |
+| != | Not equal | x != y |
+| > | Greater than | x > y |
+| < | Less than | x < y |
+| >= | Greater than or equal to | x >= y |
+| <= | Less than or equal to | x <= y |
+| instanceof | Instance Comparator | returns true if a reference variable is pointing to an object of that type | x instanceof String |
+
+## Bitwise Operators
+Bitwise operators are used to perform binary logic with bit representation of integer or long primitives
+
+| Operator | Description | Example | Same as | Result | Decimal |
+| :---- | :---- | :---- | :---- | :---- | :----
+| & | AND - Sets corresponding bit to 1 if both bits are 1 | 5 & 1 | 0101 & 0001 | 0001 | 1 |
+| \| | OR - Sets each bit to 1 if any of the two bits is 1 | 5 \| 1 | 0101 \| 0001 | 0101 | 5 |
+| ~ | NOT - switches bits to the inverse | ~5 | ~0101 | 1010 | 10 |
+| ^ | XOR - Sets a bit to 1 if one and only 1 of the bits is 1 | 5 ^ 1 | 0101 ^ 0001 | 0100 | 4 |
+| << | Zero-fill left shift - Shifts bits left, pushes in zeroes from the right and lets leftmost bits fall off | 9 << 1 | 1001 << 1 | 0010 | 2 |
+| >> | Signed right shift - Shift right by pushing in copies of leftmost bit on the left and letting rightmost bits fall off | 9 >> 1 | 1001 >> 1 | 1100 | |
+| >>> | Zero-fill right shift | 9 >>> 1 | 1001 >>> 1 | 0100 | 4 |
+
