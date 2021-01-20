@@ -238,3 +238,82 @@ Bitwise operators are used to perform binary logic with bit representation of in
 | >> | Signed right shift - Shift right by pushing in copies of leftmost bit on the left and letting rightmost bits fall off | 9 >> 1 | 1001 >> 1 | 1100 | |
 | >>> | Zero-fill right shift | 9 >>> 1 | 1001 >>> 1 | 0100 | 4 |
 
+# Java: Control Flow
+Code within our methods are executed from top to bottom in the order that they have appeared. However, when it comes to programming, we often don't want things to execute in a straight line. **Control flow statements** allow us to break up the flow of execution by including decision making, looping, and branching abilities in order to enable our program to conditionally execute blocks of code.
+
+We have three different types of control flow statements
+- Decision-making statements
+    - if-then
+    - if-then-else
+    - switch
+- Looping statements
+    - for
+    - while
+    - do-while
+- Branching statements
+    - break
+    - continue
+    - return
+
+## Decision-making statements
+- if-then
+    - Tells our program to execute a certain block of code if the test evaluates to true
+- if-then-else
+    - Gives your program a secondary path of execution if the test evaluates to false
+    - You might be aware of some programming languages having a special "elseif / elif / elsif" keyword
+        - This does not actually exist in Java, instead the else and if keywords are separate
+- switch
+    - Simplifies the process of having multiple execution paths
+    - Works with *byte*, *short*, *char*, *int*
+    - Also works with some other types like *enums*, *String*, and wrapper classes such as *Byte*, *Short*, *Character*, *Integer*
+    - There is a concept known as fall-through with switch statements, where if you omit a break keyword, you will execute all subsequent cases
+    - We can also include a default case that executes if no other is met
+
+## Looping statements
+- for statement (for loop)
+    - Gives us a compact way to iterate over ranges of values
+
+```java
+for (<initialization>; <termination>; <increment>) {
+    // code here
+}
+```
+
+- *initialization* expression intializes the loop
+- *termination* expression terminates the loop once it evaluates to false
+- *increment* expression which can be used to increment or decrement a value in that section, per iteration of the loop
+
+- while loop
+    - Allows us the ability to loop over a block of code while some condition is true
+    - If the condition is initially false, the while block will never execute
+
+- do-while loop
+    - very similar to the while loop
+    - The main difference is that the do-while block is guaranteed to execute at least once
+
+## Branching statements
+- break
+    - has two forms:
+        - labeled
+        - unlabeled
+    - break is also used not only in loops, but also in switch statements to not "fall-through" to the subsequent cases
+- continue
+    - skips current iteration of for, while, and do-while loop
+    - has two forms:
+        - labeled
+        - unlabeled
+- return
+    - same as the method return statement
+    - used to exit from the current method entirely
+    - we can use return; for void methods, or return some value for non void methods
+
+# Java: Arrays
+Arrays in Java are contiguous blocks of memory of sequentially stored elements of the same type. Some important properties of arrays in Java include:
+- Arrays are a fixed size, so once they are instantiated (**they are objects**), their size cannot change
+- Variables in arrays are ordered and have indices beginning from 0
+- The size of an array must be specified by an int value (not long or short, etc.)
+- Can be multi-dimensional (array of arrays)
+- The length of an array can be found by accessing its length field
+
+# Java : Methods and Parameters
+Methods are blocks of code that only run when they are called. The purpose of utilizing methods is to reuse code by defining it only once, and then using it many times. We have already seen the usage of methods in the form of "public static void main(String[] args)" method, which is used as the entry-point of execution in our Java programs.
