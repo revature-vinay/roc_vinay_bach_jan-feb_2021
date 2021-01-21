@@ -317,3 +317,87 @@ Arrays in Java are contiguous blocks of memory of sequentially stored elements o
 
 # Java : Methods and Parameters
 Methods are blocks of code that only run when they are called. The purpose of utilizing methods is to reuse code by defining it only once, and then using it many times. We have already seen the usage of methods in the form of "public static void main(String[] args)" method, which is used as the entry-point of execution in our Java programs.
+
+- Methods must be declared within a class in Java
+- Methods are defined with an access modifier, follow by any number of non-access modifiers, return type, and then the name of the method and parentheses with parameters inside
+```java
+public static int add(int x, int y) {
+    return x + y;
+}
+```
+- public (access modifier): means this method can be accessed from anywhere
+- static (non-access modifier): this method belongs directly to the class it is defined in and not to an object of that class
+- int: this method should return an int primitive value
+- x, y: these are int parameters that can be passed into the method
+
+To use this method, we need to write the method's name, followed by the parameters supplied inside the parentheses and a semicolon.
+
+```java
+public static void main(String[] args) {
+    int y = add(1, 2);
+    System.out.println(y);
+}
+```
+
+## Method Overloading
+It is possible to have methods with duplicate names in Java. This allows us to group methods with similar functionality together and not have to create unique names for each. In order to overload methods, we need to
+- Have different parameter types
+- Have a different number of parameters
+
+There is no ambiguity as to which method you want to execute based on this criteria.
+
+```java
+public static int add(int x, int y) {
+    return x + y;
+}
+
+public static int add(int x, int y, int z) {
+    return x + y + z;
+}
+```
+
+Overloaded methods, despite having the same name, are all different methods! They are not actually related in any way except naming. Oftentimes, you will hear method overloading refered to as **compile-time polymorphism**, because the compiler, when translating the source code to bytecode, will have a clear distinction between each overloaded method.
+
+## Method Var-args
+Var-args stands for "variable arguments", which allows us to set arguments that can be determined at runtime. Under the hood, Java creates an array that contains the arguments provided. There are two important constraints when working with varargs:
+- You can only have 1 varargs parameter per method
+- It must be the last parameter defined
+
+# Java : Constructors
+When we use the new keyword to create an object, the JVM invokes a special class member called a **constructor**. A constructor declares how an object is to be instantiated and initialized from the class blueprint.
+- Constructors are declared like methods, but the method signature does not contain a return type
+- Constructors always have the same name as the class it is defined in
+
+## Constructor associated keywords
+- this keyword
+    - Can be used for constructor chaining when invoked as a method (ex. this(..))
+    - Or to be refered to as the object being instantiated
+        - Done to avoid "variable shadowing" problems
+- super keyword
+    - references the parent class
+    - when invoked like a method (ex. super(..)), the parent class constructor is called
+- Default constructor
+    - if we don't define a constructor, the default constructor is provided automatically by the compiler
+    - the default constructor is known as the no-args constructor
+    - NOTE: IF we define a constructor in our class, this will NOT be provided
+
+The default no-args constructor looks like this, except it is implicitly inserted
+```java
+public MyClass() {
+    super();
+}
+```
+
+# One of the Pillars of OOP: Inheritance
+Inheritance is the process by which classes, and thus, objects, can **inherit** the state and behavior of other classes. The class that other classes inherit from is known as a **base/parent/super** class, while the class that inherits from another class is called the **child/sub**-class.
+
+## Terminology
+- Base/Parent/Super class: the class from which the other classes inherit from
+- Sub/Child class: the class that inherits from another class
+- IS-A relationship: A class that inherits from another class forms an IS-A relationship with the parent class
+(ex. Dog is an Animal)
+
+In Java, all **NON-private** fields and methods are inherited from a parent class.
+
+## Benefit
+The main benefit with inheritance is reusability of code. By using inheritance, we can abide by the DRY principle (don't repeat yourself).
