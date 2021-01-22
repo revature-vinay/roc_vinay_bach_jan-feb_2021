@@ -442,3 +442,13 @@ Access modifiers help to restrict the accessibility of a class, constructor, fie
     - Allows for access within the same package as well as any subclasses outside of that package
 4. Public
     - Allows for access anywhere, any package, anything
+
+# One of the Pillars of OOP: Encapsulation
+
+Encapsulation is the principle in OOP of
+1. Containing related state and behavior together in a class
+    - Can help us to adhere to the Single Responsibility Principle (SRP)
+2. Hiding and preventing change to an object's data members
+    - Prevents arbitrary external changes that could cause an object to be in an invalid/inconsistent state (for example, age being negative)
+
+Encapsulation introduces the idea of **getter** and **setter** methods, also known as **accessor** and **mutator** methods, respectively. Getter methods are used to access private fields from outside, while setter methods allow us to modify private fields from outside. Access to the getter and setter methods are controlled by access modifiers, which we have covered.
