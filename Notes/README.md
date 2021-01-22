@@ -401,3 +401,44 @@ In Java, all **NON-private** fields and methods are inherited from a parent clas
 
 ## Benefit
 The main benefit with inheritance is reusability of code. By using inheritance, we can abide by the DRY principle (don't repeat yourself).
+
+# Wrapper Classes
+Wrapper classes allow us to represent primitives as objects. This is important when we begin learning about data structures in the built-in Java Collection API, which can only store objects and not primitives.
+- Wrapper classes are part of the java.util package
+- Conversion between a wrapper object and a primitive occurs automatically
+    - This is known as **autoboxing** when automatic conversion from primitive to object happens
+    - It is known as **unboxing** when we convert from object to primitive
+    - Remember these terms!
+
+## Wrapper utility methods/fields
+### Fields
+- MAX_VALUE: constant holding the maximum value of that particular wrapper object / primitive can have
+- MIN_VALUE: constant holding the minimum value of that particular wrapper object / primitive can have
+- SIZE: the number of bits used to represent an int value
+- TYPE: *Class* instance representing primitive type
+
+### Methods (static methods)
+- valueOf(...): parses argument into a wrapper object containing the value
+- parseInt, parseDouble, ... etc: parses the argument into a primitive of that type
+- intValue, longValue, doubleValue, etc.: returns value of wrapper object as primitive
+
+# Packages and Imports
+Packages are used to group related classes. We can essentially think of packages like folders. Packages are used to group similar code as well as to prevent naming conflicts in order to promote maintainability. We have:
+- Built in packages from the Java API
+- User-defined packages (as what we have been creating ourselves)
+
+Imports allow us to use classes from other packages. The **import** keyword tells the JVM what class to use from where. We also **import static**, (static imports), which allow us to import static methods and members and use them directly without needing to refer to the classname + dot operator. 
+
+The **package** keyword followed by package name should be the first line in the .java file, followed by any imports from other classes.
+
+# Access Modifiers
+Access modifiers help to restrict the accessibility of a class, constructor, field, or method. We have four possible access modifiers in Java, from most restrictive to least:
+1. Private
+    - Allows for access only within the same class
+2. Default
+    - This is the access modifier that the class or class member will have if we do not specify any of the other 3 access modifiers
+    - Allows for access within the same package
+3. Protected
+    - Allows for access within the same package as well as any subclasses outside of that package
+4. Public
+    - Allows for access anywhere, any package, anything

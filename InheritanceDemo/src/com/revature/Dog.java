@@ -1,6 +1,7 @@
 package com.revature;
 
 // Dog inheriting properties and behaviors from Animal
+// the keyword extends allows you to inherit from another class
 public class Dog extends Animal { // You cannot extend multiple classes
 	
 	public String name;
@@ -9,10 +10,11 @@ public class Dog extends Animal { // You cannot extend multiple classes
 	// But we do provide another constructor below, so if we wanted this no-args constructor, we would need to put it in manually
 	// like this
 	public Dog() {
-		super();
+		super(); // It invokes the constructor in the Animal class
 	}
 	
 	public Dog(String name) {
+		// super() // There is an invisible super() inserted here
 		this.name = name;
 	}
 	
