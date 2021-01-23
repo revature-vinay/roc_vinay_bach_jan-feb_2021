@@ -198,6 +198,7 @@ Logical operators are used to perform operations with booleans
 | :------- | :--- | :---------- | :------ |
 | && | Logical AND | Evaluates to true if both statements are true | x > 10 && x < 20 |
 | \|\| | Logical OR | Evaluates to true if at least one of the statements is true | x < 10 \|\| x > 20 | 
+| ^ | Logical XOR | Evaluate to true if one of the statements are true and only one | x > 10 ^ x < 10
 | ! | Logical NOT | Evaluates to false if the result is true and vice versa | !(x < 5) |
 
 ## Assignment Operators
@@ -452,3 +453,135 @@ Encapsulation is the principle in OOP of
     - Prevents arbitrary external changes that could cause an object to be in an invalid/inconsistent state (for example, age being negative)
 
 Encapsulation introduces the idea of **getter** and **setter** methods, also known as **accessor** and **mutator** methods, respectively. Getter methods are used to access private fields from outside, while setter methods allow us to modify private fields from outside. Access to the getter and setter methods are controlled by access modifiers, which we have covered.
+
+# Variables Scopes
+Like all other programming languages, Java has the concept of scope. Scope is inter-related with the access modifiers, but is a different concept (try not to confuse these two topics).
+
+1. Static Scope
+    - Static scope refers to a variable that belongs to the class itself
+2. Instance Scope
+    - Instance scope referes to a variable that belongs to a particular instance/object
+    - Instance methods can access static fields/methods! (directly)
+3. Method Scope
+    - Refers to variables defined within a method
+    - Once the method finishes executing (when the method returns), then the variable will no longer be in scope
+4. Block Scope
+    - Refers to a block of code within a method
+    - For example, variables declared inside an if statement code block, for loop block, while loop block, etc.
+
+# One of the Pillars of OOP: Polymorphism
+Polymorphism means "taking on many forms". In the context of object-oriented programming (OOP), polymorphism describes how objects can behave differently in different contexts. In Java, this comes often in the form of the following:
+- Method Overloading
+- Method Overriding
+
+## Method Overloading
+Method overloading describes the case where there are two or more methods in a class with the same name, but different method signature in the form of different types of parameters and/or different numbers of parameters.
+
+We have already covered this. Method overloading is also known as **compile-time** polymorphism, because the parameter/argument list is already known at compilation. Behind the scenes, the compiler differentiates these methods, because for all intents and purposes, these are different methods entirely.
+
+## Method Overriding
+Method overriding describes the case in which a child class has the same method signature as a method in the parent class. However, this method in the child class can have a different implementation (different code inside the method). Child classes can change the default behavior, which makes class hierarchies and inheritance more flexible and dynamic. Method overriding is **run-time polymorphism**
+
+When overriding a parent method in a child class, the method must:
+- Have a covariant return type
+- The same method name
+- The same method parameters
+- The same access modifier or more access (ex. if the parent method is default, the child must be default or higher (protected, public))
+
+```java
+Animal anotherAnimal = new Dog();
+anotherAnimal.makeNoise();
+```
+
+When we declare reference variable anotherAnimal, it is of the `Animal` type, but actually refers to an instance of `Dog` in memory. Therefore, when we use the `makeNoise` method, we actually use `Dog`'s version of the `makeNoise` method. This is known as **virtual method invocation**. Since the method that is executed is determined at runtime, it is known as **runtime** or **dynamic** polymorphism.
+
+### Static methods
+Another important point to note is that we cannot override `static` methods. If a subclass has a static method with the same name as the parent, the parent method is hidden.
+
+### Covariant return types
+When we override a method, we can actually change its return type, as long as the return type is a **subtype**/**subclass** of the original. These are known as covariant return types. This does not apply to primitives.
+
+# Java: Annotations
+Java annotations are special constructs that may be seen throughout Java code. Annotations use the `@` symbol followed by the annotation name. They are used to provide metadata about source code to the compiler and JVM. They can be placed on classes, methods, fields, and other constructs depending on how they are originally defined.
+
+One of the primary purposes of annotations is to enforce rules in code or to abstract away some functionality provided by a library or framework. Annotations are often processed using Java's built-in `Reflection API` to dynamically provide functionality for developers.
+
+You should be familiar with a few built-in annotations:
+- `@Override`: declares that a method must override an inherited method
+- `@Deprecated`: marks a method as obsolete
+- `@SuppressWarnings`: instructs compiler to suppress compilation warnings, IDE, etc.
+- `@FunctionalInterface`: designates an interface as a functional interface
+
+# Java: Object class
+The Object class is a special class that is the root class of all other classes. Even though we're not required to explicitly extend the Object class, all classes inherit from this class either directly or indirectly.
+- Indirect: If the class is extending another class already (ex. Dog extends Animal), the superclass(es) (such as Animal) will be extending from Object class
+- Direct: If we don't extend any other class, we can think of the class as directly extending Object with an implicit `extends Object`.
+
+## Methods
+The Object class has some important methods we should be taking into account:
+- `toString()`: the toString() method inherited from the Object class is automatically called when we print an object. If this method is not overridden in our own classes, it will print the output as `fully.qualified.ClassName@hashedMemoryAddress`
+- `equals(Object o)`: compares two objects. The == compares to see if the memory address is the same, which will return true if both variables are pointing to the same object in memory. If .equals() is not overridden in our own classes, the `equals` method will behave exactlly the same as `==`.
+- `hashCode()` returns a hash code, which is a number that is used for putting objects into finite numbers of categories. For instance, hashcodes are often used in HashMaps, HashSets, and other data structures that rely on hashing. If this is not overridden, by default it will basically hash the memory address of where an object is stored.
+- `finalize()` is a method that is called by the garbage collector whenever it determines that an object is no longer reachable (meaning there are no variables pointing to that object). This can be overridden to perform cleanup duties before garbage collection, but in newer versions of Java, this method has been deprecated.
+
+There are some rules for hashCode():
+- If we override equals(), we should also override hashCode()
+- The result of hashCode() should remain consistent in a program (meaning it should have a predictable result)
+- if .equals() returns true, the hashcodes MUST be equal
+- if .equals() returns false, the hashcodes do not necessarily need to be different. However, having our hash function provide as much diversity as possible will improve performance of data structures such as hash tables.
+
+# Java: Final keyword
+The `final` keyword is a type of **non-access** modifier that can be used when declaring an entity. The final keyword essentially means that the value cannot be modified in the future. `final` can be used on variables, parameters, methods, and classes.
+
+## Final variables
+If a variable is declared with the final keyword, once initialized, the value cannot be changed.
+- The variable does not necessarily need to be initialized at the time of declaration.
+- If declared by not initialized, it is considered a **blank final variable**.
+
+If the variable is a reference variable, we cannot change what object the variable refers to. But this does not stop us from modifying properties of the object itself.
+
+## Final parameters
+If final is used with a method parameter, it means the variable's contents cannot be changed in the function (method).
+
+## Final methods
+A method that is declared with the final keyword
+- Cannot be **overridden** (instance methods) by a child class
+- Cannot be **hidden** (static methods) by subclasses
+
+## Final classes
+Classes declared as final cannot be extended by other classes
+
+# Java: Strings in Greater Depth
+Strings in Java are NOT primitives unlike some other programming languages. They are instead **immutable** objects that are instantiated from the `String` class. 
+
+Immutable: means that the properties of the object cannot be altered once created.
+- Immutability is accomplished using
+    - private and final fields
+    - not implementing "setter" methods
+    - etc.
+- Implications of immutability: all methods in the String class return a **new String object**.
+    - We cannot change a String object's value, so a new String must be generated with the desired modifications
+
+## String API methods
+- `concat(String str)`: concatenates the specified string to the end of **this** string
+    - remember that this returns a completely new string because of String immutability
+- `startsWith`: returns a boolean if a string starts with a certain sequence of characters
+    - `startsWith(String prefix)`
+    - `startsWith(String prefix, int offset)`
+- `endsWith(String suffix)`
+- `contains(CharSequence s)`: returns a boolean that is true if the String contains that particular sequence of characters
+- `charAt(int index)`: returns a char at the specified index
+- `matches(String regex)`: returns a boolean that is true if the string matches a given **regular expression**
+- `substring(int startingIndex)`: take a portion of the string from the starting index all the way to the end of the string
+- `substring(int startingIndex, int endingIndex)`: goes from the startingIndex to the endingIndex not inclusive
+
+# Java: StringBuilder and StringBuffer
+Because Strings are immutable like mentioned previously, it could be really inefficient to use Strings if we have to constantly generate new Strings. Imagine a situtation in which we are generating new strings through an iterative process in a for or while loop, tacking on additional characters and therefore creating a new String object each loop.
+
+Instead, StringBuilder and StringBuffer can be used, which is a way to construct strings in a mutable process. They both contain methods such as `append()` and `insert()`, which mutate the internal sequence of characters (which is not possible with immutable Strings). StringBuffer is similar to StringBuilder, except it is synchronized (which means it is thread-safe and can only be accessed by 1 thread at a time), and therefore useful for multi-threaded applications where multiple threads may be accessing the object.
+
+| Class | Immutable? | Thread-safe? | Speed |
+| :---- | :--------- | :----------- | :---- |
+| String | Y | Y | Slowest |
+| StringBuilder | N | N | Fastest |
+| StringBuffer | N | Y | Fast |
