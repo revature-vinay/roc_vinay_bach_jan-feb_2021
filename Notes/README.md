@@ -585,3 +585,79 @@ Instead, StringBuilder and StringBuffer can be used, which is a way to construct
 | String | Y | Y | Slowest |
 | StringBuilder | N | N | Fastest |
 | StringBuffer | N | Y | Fast |
+
+# One of the pillars of OOP: Abstraction
+Abstraction is a principle in which we centralize common characteristics and generalize behavior into conceptual modules. By utilizing abstraction, we hide underlying complexity of implementation. For example, when we drive a car, we don't need to know how the car works, only how we need to use the accelerator, brakes, steering wheel, etc. The car abstracts away the internal details of the engine, transmission, cooling, and other functions.
+
+## Abstract Classes
+In Java, we achieve abstraction using abstract classes and/or interfaces. Abstract classes are classes declared using the `abstract` keyword that cannot be instantiated. Abstract classes essentially serve as templates for which other classes extend from. Within abstract classes there can be both **abstract methods** and **concrete methods**. Abstract methods must be implemented by the concrete subclasses that extend the abstract class. An abstract class can contain instance fields and concrete methods just like concrete classes.
+
+The primary differences, as summarized:
+- Abstract classes cannot be instantiated
+- However, they can contain everything that normal classes have, with the addition of abstract methods
+
+## Interfaces
+Interfaces cannot be instantiated just like abstract classes. They serve as contracts for methods that a class must implement. To inherit from interfaces, classes would use the `implements` keyword to implement an interface. Multiple interfaces can be implemented by a class, unlike abstract classes, since a child class can ever only extend one parent class. Interfaces can have variables, but they are implicitly set to `public`, `static`, and `final`, so no instance fields can be defined in an interface unlike abstract classes. Before Java 8, interfaces could ONLY contain abstract methods to be implemented in classes, but since then, interfaces can also have implementations if marked with the `default` keyword (not be confused with the default access-modifier). Interfaces can also contain static methods (and remember static methods are not ever inherited).
+
+One of the reasons interfaces have more restrictions than abstract classes is to allow Java to support the ability to implement multiple interfaces at once. The issue with multiple inheritance in Java is ambiguity that can arise if two classes had the same method name, since Java would not know which method implementation to inherit.
+
+# Java: Generics
+Generics were added in Java 5 to provide compile-time type checking and removing the risk of ClassCastException. This allows us to achieve type-safety, especially when using the built-in Java collections.
+
+Java allows us to define classes with generic types, which are classes or interfaces that are parameterized. We can use angle brackets to specify parameter type.
+
+# Java: Collections Framework
+The Collections framework or API is a set of classes and interfaces in Java that implement commonly used data structures. Below is a diagram showing the Collection hierarchy. The most important interfaces are as follows:
+- `Iterable`: this guarantees that the collection can be iterated over
+- `Collection`: This is the top level interface of the entire Collections API
+- `List`: an ordered collection of elements, similar to an array
+- `Set`: a collection that does not contain duplicates (not necessarily ordered)
+- `Queue`: a collection that operates on a first-in-first-out (FIFO) basis, just like people waiting in a line (queue)
+- `Stack`: a collection that operates on a last-in-first-out (LIFO) basis, similar to a stack of plates
+- `Map`: contain key/value pairs and **is separate from the Collection hierarchy**. It does not implement iterable, but can be iterated over in a different manner.
+
+There is also a **Collections class** that contains static utility methods that we can use to perform various operations on our Collection objects.
+
+# Java: Exceptions
+Exceptions are events that occur during the execution of programs that disrupt the normal flow of instructions.
+
+In the context of Java, exceptions are objects that wrap an exceptional event that occurred inside the execution of a method. Exception objects contain information such as the following:
+- Type of exception
+- The state of the program when the exception occurred
+- Other custom information
+    - Messages
+    - etc.
+
+Exceptions can be
+- Thrown
+- Caught
+
+When learning the idea of Exceptions, it is important to understand its hierarchy. This allows us to understand and differentiate between Errors and Exceptions, and also, very importantly, the difference between checked and unchecked exceptions.
+
+## Checked vs Unchecked Exceptions
+Checked Exceptions
+- The `Exception` class and all of its subclasses (except RuntimeException) are known as checked exceptions
+- Checked exceptions represent occasions where it is reasonable to anticipate something unexpected to occur, such as when a file does not exist when we are trying to access it.
+- Checked exceptions **MUST** be handled or declared by the programmer, otherwise the code will not compile
+
+Unchecked Exceptions
+- The `RuntimeException` class is a special type of exception that is not required to be handled or declared
+- Unchecked exceptions are typically reserved for issues such as
+    - `ArithmeticException` for illegal arithmetic, such as dividing by 0
+    - `IndexOutOfBoundsException` if we try to reference an index that is larger than the size of our array
+    - `NullPointerException` if we try to access a field or invoke an instance method on something that is pointing to no object (`null`)
+    - `ClassCastException` if we try to downcast from a parent reference type to some child reference type that is hierarchically valid, but the object is not of that instance.
+
+One common misconception is that unchecked exceptions are RuntimeExceptions while checked exceptions are "compile-time". In fact, both unchecked and checked exceptions occur at Runtime. There is really no such thing as exceptions at compile time.
+
+We have compilation-errors, which would be problems with your code's syntax, but this is totally different from exceptions. These would be issues that cause your code to not compile at all.
+
+## Handling Exception v. Declaring Exceptions
+Handling: risky code is placed inside a try/catch block
+- Try-catch-finally
+    - In order to handle exceptions, a try/catch block can be used
+    - `try` encloses the code that may throw an exception
+    - `catch` defines an exception to catch and runs the code inside if that exception is caught
+    - `finally` is used to run whether an exception is thrown or not. It will ALWAYS execute unless System.exit() is called or the program crashes.
+
+Declaring: the type of exception to be thrown by the method is listed in the method signature using the throws keyword. Instead of handling it within that same method, we let the code that calls that particular method deal with it instead.

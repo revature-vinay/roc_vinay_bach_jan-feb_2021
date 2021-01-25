@@ -1,0 +1,147 @@
+# Java Study Guide
+
+## Fundamentals
+- Features, benefits, and drawbacks of Java language
+    - WORA (write once, run anywhere)
+        - We are compiling to bytecode
+        - bytecode can then be run by the JVM for that specific operating system
+    - Backed by Oracle
+    - Rich APIs (e.g. Collections API)
+    - Object-oriented
+    - Strongly/strictly typed
+    - High level (e.g. we don't need to handle memory allocation ourselves, there is automatic garbage collection)
+        - and the syntax is a lot easier to read and write than something like binary 0s and 1s or assembly code
+    - Verbose
+- POJOs vs Bean
+- Stack vs Heap
+    - Heap is where objects are stored
+    - We also have a special string pool for String literals
+    - The stack is where variables local to a method
+- Purpose and contents of the JDK, JRE, and JVM
+- Garbage collection
+- main method signature and significance
+- compiling and executing Java code on the command line
+    - javac SomeFile.java
+    - java SomeFile
+- Primitive Data types
+    - boolean
+    - byte
+    - char
+    - short
+    - int
+    - long
+    - float
+    - double
+- Operators
+    - Arithmetic
+        - pre/post-increment
+    - logical 
+    - ternary <- look into these, they're pretty cool
+- Scopes of variables
+    - static
+    - instance
+    - method
+    - block
+- Control flow statements
+    - for
+    - enhanced for loop
+    - if/else
+    - while
+    - do-while
+    - switch
+- Class members
+    - Fields (instance/static variables)
+    - Methods (instance/static)
+    - Constructors
+    - Nested classes (advanced)
+- Access Modifiers
+    - public
+    - protected
+    - default
+    - private
+- Nonaccess modifiers
+    - static
+    - final
+    - abstract
+- Packages and imports
+    - what packages are for
+    - why we need to import classes
+    - static imports
+- this and super keywords
+- JRE library classes
+    - Object class
+        - equals() method
+        - hashCode() method
+        - toString() method
+    - System (System.out.println), (System.in)
+    - String
+    - StringBuilder
+    - StringBuffer
+    - Collections (utility class)
+    - Arrays (utility class)
+        - Arrays.toString(arr) to print out elements from the array
+    - Wrapper classes
+        - Autoboxing / unboxing - primitive to wrapper / wrapper to primitive conversion
+- Varargs
+
+## OOP
+- OOP principles
+    - Abstraction
+        - Abstract classes
+        - Interfaces
+    - Polymorphism
+        - Method Overloading (compile-time polymorphism)
+        - Method Overriding (runtime polymorphism)
+            - Covariant return types
+            - Access levels
+    - Inheritance
+        - Inheriting from classes vs interfaces
+    - Encapsulation
+        - Using access modifiers with getters/setters
+- Object v. Class
+    - class is the blueprint
+    - an object is constructed from this blueprint
+- Abstract classes
+    - difference between abstract and concrete classes
+- Interfaces
+    - implicit modifiers for variables and methods
+    - When to use interfaces instead of abstract classes
+        - For example we can implement multiple interfaces
+        - but we can only extend one class (including abstract classes)
+
+## Collections
+- Collections API
+    - Inheritance hierarchy
+    - List, Set, Map, and Queue interfaces and some of the differences between these data structures
+    - Concrete implementations and their differences
+        - HashMap v TreeMap
+        - HashSet v. TreeSet
+        - ArrayList v. LinkedList
+    - Using enhanced for loops
+    - Iterator
+
+## Annotations
+- @Override
+- @Deprecated
+- @SuppressWarnings
+- etc.
+
+## Generics
+- Know about the concept of generics
+
+## Exceptions
+- Know the class hierarchy
+    - Throwable
+        - Error
+        - Exception
+            - RuntimeException
+                - unchecked exceptions
+            - checked exceptions
+- Handling or declaring exceptions
+    - throw v. throws
+- try/catch/finally blocks
+    - rules for multiple catch blocks
+        - most specific exceptions go first
+    - finally is optional
+- Creating custom exceptions
+    - extends Exception v. extends RuntimeException
