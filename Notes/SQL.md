@@ -223,3 +223,65 @@ Whenever we perform modifications to the data in our database, we are utilizing 
 - Durability: Durability means when a transaction is complete (it has been committed), the changes should be persisted to the database. If the system were to suddenly lose power or crash, upon restart of the system, the changes should still be there.
 
 # Isolation Levels & Read phenomena
+Isolation levels are applied within the RDBMS to provide consistency to how data is read and transacted and to avoid certain read phenomena. 
+
+## Read phenomena (transaction issues)
+Read phenomena describes strange occurrences that could occur if the same data is being manipulated by two or more transactions at the same time. We often try to handle transactions at the same time instead of one after the other because this is faster. There are three read phenomena that should be taken into account:
+- Dirty Read
+    - Describes the situation when a transaction reads data that has been added by a different transaction that has not committed yet
+    - If this uncommitted transaction happens to fail at some point, it will be rolled back, which results in data that is actually not there to be read by this other transaction anyways
+    - Hence, this is why it is called dirty read
+- Non-repeatable read
+    - Describes the situation when a transaction re-reads data sometime later in the transaction that was previously read in the same transaction which another transaction that has already been committed has modified
+- Phantom read
+    - Describes a situation in which we a transaction re-runs a query and sees that the number of records may have changed because some other transaction modified a value that caused the query to no longer include that record.
+    (e.g. if our transaction were querying ages less than 18 and then we query it again later in the transaction, but in between that time another transaction changed someone's age from 18 to 19, we may see that a record is now missing in the second query)
+
+## Isolation Levels
+- Refers to the degree in which two transactions will interfere with each other when modifying the same data
+- When applications become more complex and more traffic and modifications are made to the application database, we need to account for transactions occuring at the same time
+- The more strict our isolation level, the more careful the system is about avoiding conflicts, but this could cause performance issues since concurrency decreases
+
+| Isolation Level | Dirty Read | Non-repeatable Read | Phantom Read |
+| :-------------- | :--------- | :------------------ | :----------- |
+| Read Uncommitted | Y | Y | Y |
+| Read Committed | N | Y | Y |
+| Repeatable Read | N | N | Y |
+| Serializable | N | N | Y |
+
+# Database Joins
+- Joins are operations that allow us to "join" data together from different tables
+- Useful when retrieving data based on the relationships between tables
+- Several types
+    - INNER JOIN
+        - Only show records that have the condition matching on both sides
+    - FULL OUTER JOIN
+        - Show matching records and records that have no match, with NULL values on the opposite side
+    - LEFT/RIGHT JOIN
+        - Data from the LEFT (or RIGHT) table are paired with the other, with NULLS if no match is found for the other side
+    - CROSS JOIN
+        - Cross product of both tables
+        - Produces a list of permutations
+            - A lot of data!
+            - if one table has 1000 records, and another has 2000
+                - 1000 * 2000 = 2,000,000 rows for the result
+    - SELF JOIN
+        - Not really its own category of JOINs
+        - It is a join on the same table
+        - e.g. employee table may have a manager_id FK pointing to employee_id PK on the same table!
+
+```SQL
+SELECT <columns> FROM <left table> <JOIN TYPE> JOIN <right>
+ON <left table>.column = <right table>.column
+```
+
+# Set Operations
+Set operations are performed using set operators, which are different from joins. Instead of joining two tables together by their columns, set operators take the rows of different result sets and combine them. 
+
+Some operators include:
+- UNION [ALL]
+    - UNION doesn't keep duplicates unlike UNION ALL
+- INTERSECT
+    - returns records common between queries
+- EXCEPT
+    - removes from our first result set what rows appear in the second result set and gives us the first set MINUS the second set
