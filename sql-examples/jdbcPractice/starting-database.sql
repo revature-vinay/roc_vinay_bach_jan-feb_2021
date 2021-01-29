@@ -29,3 +29,5 @@ VALUES
 ('Tommy', 'C', 'Male', 25, '555-555-5555', 1),
 ('Sarah', 'PG', 'Female', 21, '666-666-6666', 1);
 
+SELECT *
+FROM jdbc_demo_1.player
