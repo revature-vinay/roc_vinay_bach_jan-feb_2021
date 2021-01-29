@@ -32,7 +32,8 @@ public class MainMenu implements Menu {
 					playerMenu.display();
 					break;
 				case 3:
-					System.out.println("Team Menu selected");
+					Menu teamMenu = new TeamMenu();
+					teamMenu.display();
 					break;
 				default:
 					System.out.println("No valid choice entered, please try again");

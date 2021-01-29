@@ -247,7 +247,7 @@ Read phenomena describes strange occurrences that could occur if the same data i
 | Read Uncommitted | Y | Y | Y |
 | Read Committed | N | Y | Y |
 | Repeatable Read | N | N | Y |
-| Serializable | N | N | Y |
+| Serializable | N | N | N |
 
 # Database Joins
 - Joins are operations that allow us to "join" data together from different tables
