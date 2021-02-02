@@ -1,0 +1,24 @@
+Hello from DEBUG
+Hello from INFO
+Hello from WARN
+Hello from ERROR
+Hello from FATAL
+hello from iAmServiceMethod1
+User info was entered is test Username
+bye bye from iAmServiceMethod1
+{DEBUG}    [com.log4j.demo.Main]     Hello from DEBUG    2021-02-02 21:48:35,654             
+{INFO}    [com.log4j.demo.Main]     Hello from INFO    2021-02-02 21:48:35,654             
+{WARN}    [com.log4j.demo.Main]     Hello from WARN    2021-02-02 21:48:35,654             
+{ERROR}    [com.log4j.demo.Main]     Hello from ERROR    2021-02-02 21:48:35,654             
+{FATAL}    [com.log4j.demo.Main]     Hello from FATAL    2021-02-02 21:48:35,654             
+{INFO}    [com.log4j.demo.service.MyService]     hello from iAmServiceMethod1    2021-02-02 21:48:35,654             
+{DEBUG}    [com.log4j.demo.service.MyService]     User info was entered is test Username    2021-02-02 21:48:35,657             
+{INFO}    [com.log4j.demo.service.MyService]     bye bye from iAmServiceMethod1    2021-02-02 21:48:35,657             
+{DEBUG}    [com.log4j.demo.Main]     Hello from DEBUG    Feb-02-2021 Tuesday IST 21:49:48              
+{INFO}    [com.log4j.demo.Main]     Hello from INFO    Feb-02-2021 Tuesday IST 21:49:48              
+{WARN}    [com.log4j.demo.Main]     Hello from WARN    Feb-02-2021 Tuesday IST 21:49:48              
+{ERROR}    [com.log4j.demo.Main]     Hello from ERROR    Feb-02-2021 Tuesday IST 21:49:48              
+{FATAL}    [com.log4j.demo.Main]     Hello from FATAL    Feb-02-2021 Tuesday IST 21:49:48              
+{INFO}    [com.log4j.demo.service.MyService]     hello from iAmServiceMethod1    Feb-02-2021 Tuesday IST 21:49:48              
+{DEBUG}    [com.log4j.demo.service.MyService]     User info was entered is test Username    Feb-02-2021 Tuesday IST 21:49:48              
+{INFO}    [com.log4j.demo.service.MyService]     bye bye from iAmServiceMethod1    Feb-02-2021 Tuesday IST 21:49:48              
